@@ -21,4 +21,7 @@ public class LockOwner {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<DoorLock> doorLocks = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<DoorKey> doorKeys = new ArrayList<>();
 }

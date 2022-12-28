@@ -16,8 +16,10 @@ public class LockVendor {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "vendor_name", nullable = false)
     private String vendorName;
 
+    @Column(name = "contact_number", nullable = false)
     private String contactNumber;
 
     @OneToMany(mappedBy = "lockVendor")

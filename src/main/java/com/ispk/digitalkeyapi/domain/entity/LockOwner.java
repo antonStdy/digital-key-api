@@ -16,7 +16,7 @@ public class LockOwner {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     private Account account;
 
     @ManyToMany(fetch = FetchType.EAGER)

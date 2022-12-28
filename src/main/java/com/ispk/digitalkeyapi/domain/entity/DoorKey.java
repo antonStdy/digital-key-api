@@ -15,10 +15,12 @@ public class DoorKey {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "duration", nullable = false)
     private Long duration;
 
-    @OneToOne
+    @OneToOne(optional = false)
     private DoorLock lock;
 }

@@ -54,7 +54,7 @@ public class LockOwnerController {
     @GetMapping("/locks/{lockId}/keys")
     public void createKey(
             LockOwner lockOwner,
-            @PathVariable Long lockId, @RequestBody KeyDto keyDto) {
+            @PathVariable Long lockId, @Valid @RequestBody KeyDto keyDto) {
         lockOwnerService.createKey(lockOwner, lockId, keyDto);
     }
 }

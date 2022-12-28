@@ -9,7 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DoorLock {
+
     @Id
+    @GeneratedValue
+    private Long id;
+
     @Column(name = "serial_number", nullable = false)
     private String serialNumber;
 

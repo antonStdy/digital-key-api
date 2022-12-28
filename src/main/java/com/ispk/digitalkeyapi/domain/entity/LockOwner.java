@@ -20,7 +20,5 @@ public class LockOwner {
     private Account account;
 
     @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "lock_owner_doorLocks",
-//            joinColumns = @JoinColumn(name = "lockOwner_id", referencedColumnName = "doorLocks_id"))
     private List<DoorLock> doorLocks = new ArrayList<>();
 }

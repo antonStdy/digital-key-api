@@ -1,10 +1,11 @@
 package com.ispk.digitalkeyapi.domain.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class LockDto {
-    private String lockVendorId;
-    private String serialNumber;
-    private String secret;
+    @NotNull private String lockVendorId;
+    @NotNull private String serialNumber;
+    @NotNull private String secret;
 }

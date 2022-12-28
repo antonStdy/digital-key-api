@@ -30,4 +30,16 @@ public class LockOwnerService {
 
         lockOwnerRepository.save(lockOwner);
     }
+
+    public void disconnectLock(LockOwner lockOwner, Long lockId) {
+        var locks = lockOwner.getDoorLocks();
+
+        var lock = locks.stream().filter(it -> it.getId().equals(lockId))
+                .findFirst()
+                .orElseThrow();
+
+        locks.remove(lock);
+
+        lockOwnerRepository.save(lockOwner);
+    }
 }

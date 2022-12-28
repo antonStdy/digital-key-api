@@ -15,10 +15,10 @@ import java.util.Collections;
 public class SmartLockUserDetailService implements UserDetailsService {
     private final LockOwnerRepository lockOwnerRepository;
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        return lockOwnerRepository.findById(Long.valueOf(userId))
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return lockOwnerRepository.findByAccount_Email(email)
                 .map(this::toUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException("Not found by id: " + userId));
+                .orElseThrow(() -> new UsernameNotFoundException("Not found by email: " + email));
     }
 
     private UserDetails toUserDetails(LockOwner lockOwner) {

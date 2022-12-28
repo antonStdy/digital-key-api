@@ -1,9 +1,6 @@
 package com.ispk.digitalkeyapi.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,4 +12,10 @@ public class DoorLock {
     @Id
     @Column(name = "serial_number", nullable = false)
     private String serialNumber;
+
+    private String secret;
+
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
+    private LockVendor lockVendor;
 }

@@ -2,6 +2,7 @@ package com.ispk.digitalkeyapi.domain.controller;
 
 import com.ispk.digitalkeyapi.domain.dto.KeyDto;
 import com.ispk.digitalkeyapi.domain.dto.LockDto;
+import com.ispk.digitalkeyapi.domain.dto.SharedKeyUrlDto;
 import com.ispk.digitalkeyapi.domain.entity.DoorKey;
 import com.ispk.digitalkeyapi.domain.entity.DoorLock;
 import com.ispk.digitalkeyapi.domain.entity.LockOwner;
@@ -51,10 +52,26 @@ public class LockOwnerController {
                 .filter(it -> it.getLock().getId().equals(lockId))
                 .collect(Collectors.toList());
     }
+
     @GetMapping("/locks/{lockId}/keys")
     public void createKey(
             LockOwner lockOwner,
             @PathVariable Long lockId, @Valid @RequestBody KeyDto keyDto) {
         lockOwnerService.createKey(lockOwner, lockId, keyDto);
     }
+
+    @DeleteMapping("/locks/{lockId}/keys/{keyId}")
+    public void removeKey(
+            LockOwner lockOwner,
+            @PathVariable Long lockId, @PathVariable Long keyId) {
+        lockOwnerService.removeKey(lockOwner, keyId);
+    }
+
+    @PostMapping("/locks/{lockId}/keys/{keyId}")
+    public SharedKeyUrlDto shareKey(
+            LockOwner lockOwner,
+            @PathVariable Long lockId, @PathVariable Long keyId) {
+        return lockOwnerService.createKeyShareUrl(lockOwner, keyId);
+    }
+
 }

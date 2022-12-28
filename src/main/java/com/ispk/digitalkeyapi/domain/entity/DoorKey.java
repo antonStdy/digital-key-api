@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "door_key")
@@ -23,4 +25,7 @@ public class DoorKey {
 
     @OneToOne(optional = false)
     private DoorLock lock;
+
+    @OneToMany
+    private List<SharingUrl> sharingUrls = new ArrayList<>();
 }

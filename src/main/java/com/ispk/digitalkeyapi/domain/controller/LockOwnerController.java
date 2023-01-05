@@ -53,7 +53,7 @@ public class LockOwnerController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/locks/{lockId}/keys")
+    @PostMapping("/locks/{lockId}/keys")
     public void createKey(
             LockOwner lockOwner,
             @PathVariable Long lockId, @Valid @RequestBody KeyDto keyDto) {

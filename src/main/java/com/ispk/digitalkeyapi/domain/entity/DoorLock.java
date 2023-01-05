@@ -28,6 +28,6 @@ public class DoorLock {
     private LockStatus lockStatus;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "lock_vendor_id", nullable = false)
     private LockVendor lockVendor;
 }

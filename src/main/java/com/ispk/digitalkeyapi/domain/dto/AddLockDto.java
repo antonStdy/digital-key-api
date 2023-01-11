@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class LockDto {
+public class AddLockDto {
     @NotNull private String lockVendorId;
     @NotNull private String serialNumber;
     @NotNull private String secret;

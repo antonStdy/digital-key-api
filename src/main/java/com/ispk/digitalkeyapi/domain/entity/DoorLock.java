@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "door_lock")
 @Getter
@@ -27,7 +24,7 @@ public class DoorLock {
     @Column(name = "lock_status", nullable = false)
     private LockStatus lockStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lock_vendor_id", nullable = false)
     private LockVendor lockVendor;
 }

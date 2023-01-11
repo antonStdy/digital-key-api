@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class KeyDto {
+public class AddKeyDto {
     @NotNull private String name;
     private Long duration;
 }

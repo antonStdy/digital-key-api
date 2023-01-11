@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +19,12 @@ public class DoorKey {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "duration", nullable = false)
+    @Column(name = "duration")
     private Long duration;
 
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     private DoorLock lock;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SharingUrl> sharingUrls = new ArrayList<>();
 }

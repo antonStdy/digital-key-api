@@ -1,7 +1,7 @@
 package com.ispk.digitalkeyapi.domain.service;
 
-import com.ispk.digitalkeyapi.domain.dto.KeyDto;
-import com.ispk.digitalkeyapi.domain.dto.LockDto;
+import com.ispk.digitalkeyapi.domain.dto.AddKeyDto;
+import com.ispk.digitalkeyapi.domain.dto.AddLockDto;
 import com.ispk.digitalkeyapi.domain.dto.SharedKeyUrlDto;
 import com.ispk.digitalkeyapi.domain.entity.DoorKey;
 import com.ispk.digitalkeyapi.domain.entity.LockOwner;
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,12 +29,12 @@ public class LockOwnerService {
                 .orElseThrow();
     }
 
-    public void addLock(LockOwner lockOwner, LockDto lockDto) {
+    public void addLock(LockOwner lockOwner, AddLockDto addLockDto) {
         var lockVendorService = lockVendorServiceFactory
-                .get(lockDto.getLockVendorId());
+                .get(addLockDto.getLockVendorId());
 
         var lock = lockVendorService
-                .getLock(lockDto.getSerialNumber(), lockDto.getSecret());
+                .getLock(addLockDto.getSerialNumber(), addLockDto.getSecret());
 
         lockOwner.getDoorLocks().add(lock);
 
@@ -54,9 +53,9 @@ public class LockOwnerService {
         lockOwnerRepository.save(lockOwner);
     }
 
-    public void createKey(LockOwner lockOwner, Long lockId, KeyDto keyDto) {
+    public void createKey(LockOwner lockOwner, Long lockId, AddKeyDto addKeyDto) {
         var isNameDuplicated = lockOwner.getDoorKeys()
-                .stream().anyMatch(it -> it.getName().equals(keyDto.getName()));
+                .stream().anyMatch(it -> it.getName().equals(addKeyDto.getName()));
 
         if (isNameDuplicated) {
             throw new IllegalArgumentException("Name already exists");
@@ -68,8 +67,8 @@ public class LockOwnerService {
                 .orElseThrow();
 
         var key = new DoorKey();
-        key.setName(key.getName());
-        key.setDuration(keyDto.getDuration());
+        key.setName(addKeyDto.getName());
+        key.setDuration(addKeyDto.getDuration());
         key.setLock(lock);
 
         lockOwner.getDoorKeys().add(key);

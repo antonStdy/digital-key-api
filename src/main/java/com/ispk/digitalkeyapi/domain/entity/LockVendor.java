@@ -22,6 +22,6 @@ public class LockVendor {
     @Column(name = "contact_number", nullable = false)
     private String contactNumber;
 
-    @OneToMany(mappedBy = "lockVendor")
+    @OneToMany(mappedBy = "lockVendor", cascade = CascadeType.ALL)
     private List<DoorLock> locks = new ArrayList<>();
 }

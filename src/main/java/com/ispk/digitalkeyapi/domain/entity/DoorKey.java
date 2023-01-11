@@ -23,7 +23,7 @@ public class DoorKey {
     @Column(name = "duration", nullable = false)
     private Long duration;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     private DoorLock lock;
 
     @OneToMany

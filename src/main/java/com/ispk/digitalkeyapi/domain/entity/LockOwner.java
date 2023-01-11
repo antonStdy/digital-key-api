@@ -19,9 +19,9 @@ public class LockOwner {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Account account;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<DoorLock> doorLocks = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<DoorKey> doorKeys = new ArrayList<>();
 }

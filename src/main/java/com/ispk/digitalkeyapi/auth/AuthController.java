@@ -20,7 +20,7 @@ public class AuthController {
     private final JWTUtil jwtUtil;
     private final AuthenticationManager authManager;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     AuthToken authenticate(@RequestBody LoginCredentialsDto creds) {
         UsernamePasswordAuthenticationToken authInputToken =
                 new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword());
@@ -32,7 +32,7 @@ public class AuthController {
         return new AuthToken(token);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     AuthToken register(@RequestBody @Valid RegistrationCredentialsDto registrationCredentialsDto) {
         var user = authService.registerUser(registrationCredentialsDto);
         String token = jwtUtil.generateToken(user.getAccount().getEmail());

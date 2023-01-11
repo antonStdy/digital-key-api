@@ -10,6 +10,5 @@ public class RegistrationCredentialsDto {
     @Email
     private String email;
 
-    @Min(3)
     private String password;
 }
